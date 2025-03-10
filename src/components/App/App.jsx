@@ -14,6 +14,12 @@ function App() {
   const handleCloseClick = () => {
     setActiveModal("");
   };
+
+  const handleCardClick = () => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+
   return (
     <div className="page">
       <div className="page__content">
