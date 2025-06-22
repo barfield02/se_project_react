@@ -1,14 +1,15 @@
-import ClothesSection from "../ClothesSection/ClothesSection.css";
-import { defaultClothingItems } from "../../utils/constants";
+import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-function ClothesSection() {
+import { defaultClothingItems } from "../../utils/constants";
+
+function ClothesSection({ clothingItems }) {
   return (
     <div className="clothes-section">
       <div>
         <p>Your items</p>
         <button>Add New</button>
       </div>
-      <ul className="cards__list">
+      <ul className="clothes-section__items">
         {clothingItems.map((item) => {
           return (
             <ItemCard

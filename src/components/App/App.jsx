@@ -12,6 +12,9 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { defaultClothingItems } from "../../utils/constants";
 import { Routes, Route } from "react-router-dom";
+import { getItems } from "../../utils/api.js";
+import { deleteItem } from "../../utils/api.js";
+import { addItem } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -44,11 +47,35 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
+  const handleAddItemSubmit = (item) => {
+    addItem(item)
+      .then((newItem) => {
+        // Add the new item to your clothing items state
+        setClothingItems([newItem, ...clothingItems]);
+        // Close the modal
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+  };
+
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     //update clothing array
     setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
     //close the modal
     handleCloseClick();
+  };
+
+  const handleDeleteItem = (id) => {
+    deleteItem(id)
+      .then(() => {
+        // Remove the item from your local state
+        setClothingItems(clothingItems.filter((item) => item._id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
   };
   useEffect((data) => {
     getWeather(coordinates, APIkey)
@@ -57,6 +84,11 @@ function App() {
         setWeatherData(filteredData);
       })
       .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems();
+    //.catch(console.error);
   }, []);
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -76,7 +108,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
           </Routes>
           <Footer />
         </div>
