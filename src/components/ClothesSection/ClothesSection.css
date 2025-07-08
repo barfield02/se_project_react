@@ -1,0 +1,14 @@
+.clothes-section__add {
+  display: flex;
+  gap: 16px;
+}
+.clothes-section__items {
+  padding: 0;
+  margin-left: 385px;
+}
+.clothes-section__your-items {
+  margin-left: 385px;
+}
+.clothes-section__add-button {
+  outline: none;
+}

@@ -1,0 +1,13 @@
+.sidebar {
+  display: flex;
+  gap: 16px;
+}
+.sidebar__avatar {
+  margin-left: 40px;
+}
+.sidebar__username {
+  margin-left: 16px;
+  font: Cabinet Grotesk;
+  weight: 700;
+  size: 20px;
+}

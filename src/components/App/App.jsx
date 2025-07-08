@@ -129,6 +129,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           handleCloseClick={handleCloseClick}
+          handleDeleteItem={handleDeleteItem}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
