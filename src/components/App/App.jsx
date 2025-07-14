@@ -50,10 +50,13 @@ function App() {
   const handleAddItemSubmit = (item) => {
     addItem(item)
       .then((newItem) => {
+        console.log(newItem);
         // Add the new item to your clothing items state
         setClothingItems([newItem, ...clothingItems]);
+        console.log(clothingItems);
         // Close the modal
-        closeActiveModal();
+        //closeActiveModal();
+        handleCloseClick();
       })
       .catch((error) => {
         console.error("Error adding item:", error);
@@ -62,7 +65,14 @@ function App() {
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     //update clothing array
-    setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
+    setClothingItems([
+      {
+        name,
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+        weather,
+      },
+      ...clothingItems,
+    ]);
     //close the modal
     handleCloseClick();
   };
@@ -123,7 +133,7 @@ function App() {
         <AddItemModal
           handleCloseClick={handleCloseClick}
           isOpen={activeModal === "add-garment"}
-          onAddItemModalSubmit={handleAddItemModalSubmit}
+          onAddItemModalSubmit={handleAddItemSubmit}
         />
         <ItemModal
           activeModal={activeModal}

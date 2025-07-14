@@ -95,6 +95,66 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Rahkeia Joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "hot",
+      "_id": 17
+    },
+    {
+      "name": "Rahkeia Joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "hot",
+      "_id": 18
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "hot",
+      "_id": 19
+    },
+    {
+      "name": "Rahkeia Joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "hot",
+      "_id": 20
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "warm",
+      "_id": 21
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+      "weather": "warm",
+      "_id": 22
+    },
+    {
+      "name": "Rahkeia Joseph",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+      "weather": "warm",
+      "_id": 23
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://unsplash.com/photos/a-serene-beach-at-sunset-ErXq37PfGQU?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "weather": "warm",
+      "_id": 24
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+      "weather": "warm",
+      "_id": 25
+    },
+    {
+      "name": "rahkeia joseph",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+      "weather": "warm",
+      "_id": 26
     }
   ]
 }

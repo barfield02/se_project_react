@@ -7,7 +7,7 @@
 }
 .sidebar__username {
   margin-left: 16px;
-  font: Cabinet Grotesk;
-  weight: 700;
-  size: 20px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
 }

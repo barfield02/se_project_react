@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1440px;
+  width: 100%;
   visibility: hidden;
 }
 .modal_opened {
@@ -29,7 +29,9 @@
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
+  border-radius: 20px;
 }
+
 .modal__title {
   margin: 0 0 24px 0;
   font-family: Cabinet Grotesk;
