@@ -15,7 +15,7 @@ function ItemCard({ item, activeModal, onCardClick }) {
       <img
         onClick={handleImageClick}
         className="card__image"
-        src={item.link}
+        src={item.imageUrl}
         alt={item.name}
       />
     </li>

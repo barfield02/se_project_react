@@ -1,6 +1,7 @@
 import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function Main({
   weatherData,
@@ -13,7 +14,7 @@ function Main({
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.currentTemperatureUnit} &deg;{" "}
+          Today is {weatherData.currentTemperatureUnitContext} &deg;{" "}
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">

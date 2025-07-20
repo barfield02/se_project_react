@@ -10,7 +10,6 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-import { defaultClothingItems } from "../../utils/constants";
 import { Routes, Route } from "react-router-dom";
 import { getItems } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
@@ -22,7 +21,7 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const handleAddClick = () => {
@@ -50,10 +49,9 @@ function App() {
   const handleAddItemSubmit = (item) => {
     addItem(item)
       .then((newItem) => {
-        console.log(newItem);
         // Add the new item to your clothing items state
         setClothingItems([newItem, ...clothingItems]);
-        console.log(clothingItems);
+
         // Close the modal
         //closeActiveModal();
         handleCloseClick();
@@ -97,8 +95,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems();
-    //.catch(console.error);
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -124,6 +125,7 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
