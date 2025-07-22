@@ -33,6 +33,7 @@ function App() {
     setActiveModal("");
   };
 
+  // opens up the ItemModal
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -47,18 +48,14 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    addItem(item)
-      .then((newItem) => {
-        // Add the new item to your clothing items state
-        setClothingItems([newItem, ...clothingItems]);
+    return addItem(item).then((newItem) => {
+      // Add the new item to your clothing items state
+      setClothingItems([newItem, ...clothingItems]);
 
-        // Close the modal
-        //closeActiveModal();
-        handleCloseClick();
-      })
-      .catch((error) => {
-        console.error("Error adding item:", error);
-      });
+      // Close the modal
+      //closeActiveModal();
+      handleCloseClick();
+    });
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
@@ -80,6 +77,7 @@ function App() {
       .then(() => {
         // Remove the item from your local state
         setClothingItems(clothingItems.filter((item) => item._id !== id));
+        handleCloseClick();
       })
       .catch((error) => {
         console.error("Error deleting item:", error);
@@ -123,7 +121,7 @@ function App() {
               path="/profile"
               element={
                 <Profile
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   handleAddClick={handleAddClick}
                 />

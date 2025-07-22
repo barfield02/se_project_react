@@ -1,5 +1,5 @@
 import "./AddItemModal.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 export default function AddItemModal({
   activeModal,
@@ -13,12 +13,21 @@ export default function AddItemModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     //update clothingItems array
-    onAddItemModalSubmit({ name, imageUrl, weather });
-    //empty the inputs
-    setName("");
-    setImageUrl("");
-    setWeather("");
+    onAddItemModalSubmit({ name, imageUrl, weather })
+      .then(() => {
+        setName("");
+        setImageUrl("");
+        setWeather("");
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
   };
+
+  useEffect(() => {
+    console.log("useffect has run");
+  }, [isOpen]);
+
   return (
     <ModalWithForm
       title="New garment"
