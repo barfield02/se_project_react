@@ -47,3 +47,11 @@ export const checkResponse = (res) => {
   }
   return Promise.reject(`Error: ${res.status}`);
 };
+
+export const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    headers: { authorization: `Bearer ${token}` },
+  }).then((res) => {
+    return checkResponse(res);
+  });
+};
