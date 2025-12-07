@@ -11,18 +11,25 @@ export default function RegisterModal({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegisterModalSubmit({ name, email, password })
-      .then(() => {
-        setName("");
-        setEmail("");
-        setPassword("");
-      })
-      .catch((error) => {
-        console.error("Error registering user:", error);
-      });
+    onRegisterModalSubmit({ name, email, password, avatar }, () => {
+      setName("");
+      setEmail("");
+      setPassword("");
+      setAvatar("");
+    });
+    //.then(() => {
+    //  setName("");
+    // setEmail("");
+    // setPassword("");
+    // setAvatar("");
+    // })
+    // .catch((error) => {
+    // console.error("Error registering user:", error);
+    //});
   };
   useEffect(() => {
     console.log("RegisterModal useEffect has run");
@@ -72,6 +79,19 @@ export default function RegisterModal({
           required
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+        />
+      </label>
+
+      <label htmlFor="Avatar" className="modal__label">
+        Avatar{" "}
+        <input
+          type="url"
+          className="modal__input"
+          id="url"
+          placeholder="Avatar"
+          required
+          onChange={(e) => setAvatar(e.target.value)}
+          value={avatar}
         />
       </label>
     </ModalWithForm>

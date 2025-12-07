@@ -8,14 +8,14 @@ export default function LoginModal({
   isOpen,
   onLoginModalSubmit,
 }) {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLoginModalSubmit({ name, password })
+
+    onLoginModalSubmit({ email, password })
       .then(() => {
-        setName("");
         setEmail("");
         setPassword("");
       })
@@ -36,16 +36,16 @@ export default function LoginModal({
       isOpen={isOpen}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
-        Name{" "}
+      <label htmlFor="email" className="modal__label">
+        Email{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
-          placeholder="Name"
+          id="email"
+          placeholder="Email"
           required
-          onChange={(e) => setName(e.target.value)}
-          value={name}
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
       </label>
 

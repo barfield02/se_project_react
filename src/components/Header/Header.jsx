@@ -12,14 +12,15 @@ function Header({
   onLogOut,
   onProfileChange,
   isLoggedIn,
-  onLogin,
-  onRegister,
+  handleSigninClick,
+  handleSignupClick,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
   const currentUser = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <Link to="/">
@@ -53,7 +54,7 @@ function Header({
       ) : (
         <>
           <button
-            onClick={onLogin}
+            onClick={handleSigninClick}
             type="button"
             className="header__sign-in-button"
           >
@@ -61,16 +62,13 @@ function Header({
             Login
           </button>
           <button
-            onClick={onRegister}
+            onClick={handleSignupClick}
             type="button"
             className="header__sign-up-button"
           >
             Sign Up
           </button>
         </>
-      )}
-      {isLoggedIn && (
-        <SideBar onLogOut={onLogOut} onProfileChange={onProfileChange} />
       )}
     </header>
   );

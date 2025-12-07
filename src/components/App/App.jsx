@@ -37,6 +37,13 @@ function App() {
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
 
+  const handleSigninClick = () => {
+    setActiveModal("signin");
+  };
+
+  const handleSignupClick = () => {
+    setActiveModal("signup");
+  };
   const handleCloseClick = () => {
     setActiveModal("");
   };
@@ -100,33 +107,30 @@ function App() {
     auth
       .register(name, avatar, email, password)
       .then((res) => {
-        if (res._id) {
-          const userData = {
-            name,
-            avatar,
-            email,
-            password,
-          };
-          resetForm();
-          onLogin(userData);
-        }
+        const userData = {
+          name,
+          avatar,
+          email,
+          password,
+        };
+        resetForm();
+        handleCloseClick();
+        onLogin(userData);
       })
       .catch((err) => console.log(err));
   };
 
-  const onLogin = ({ email, password }, resetForm) => {
+  const onLogin = ({ email, password }) =>
     auth
       .signin(email, password)
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
-          //TODO: close all modals, fetchUserInfo
-          resetForm(); //TODO if error comes up with resetForm, this may need a function
+          handleCloseClick();
         }
       })
       .catch((err) => console.log(err));
-  };
 
   const handleRegister = (name, avatar, email, password) => {
     auth
@@ -149,6 +153,7 @@ function App() {
   const onLogOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    setCurrentUser(null);
   };
 
   useEffect((data) => {
@@ -191,6 +196,8 @@ function App() {
               onLogOut={onLogOut}
               onProfileChange={onProfileChange}
               isLoggedIn={isLoggedIn}
+              handleSigninClick={handleSigninClick}
+              handleSignupClick={handleSignupClick}
             />
             <Routes>
               <Route
@@ -207,7 +214,7 @@ function App() {
                 path="/profile"
                 element={
                   <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
+                    loggedIn={isLoggedIn}
                     isLoggedInLoading={isLoggedInLoading}
                   >
                     <Profile
@@ -237,7 +244,7 @@ function App() {
           <RegisterModal
             activeModal={activeModal}
             handleCloseClick={handleCloseClick}
-            isOpen={activeModal === "register"}
+            isOpen={activeModal === "signup"}
             onRegisterModalSubmit={onRegister}
           />
           <LoginModal
