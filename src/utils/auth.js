@@ -46,3 +46,19 @@ export const checkToken = (token) => {
     return Promise.reject(`Error: ${res.status}`);
   });
 };
+
+export const edit = (name, avatar) => {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(async (res) => {
+    const data = await res.json().catch(() => null);
+    if (res.ok) return data;
+    return Promise.reject(data || `Error: ${res.status}`);
+  });
+};

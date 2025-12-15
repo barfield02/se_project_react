@@ -31,7 +31,7 @@ function Header({
         {currentDate}, {weatherData.city}
       </p>
       <ToggleSwitch />
-      {currentUser ? (
+      {isLoggedIn ? (
         <>
           <button
             onClick={handleAddClick}

@@ -11,7 +11,6 @@ function Profile({
 }) {
   return (
     <div className="profile">
-      <SideBar onLogOut={onLogOut} onProfileChange={onProfileChange} />
       <section className="profile__sidebar">
         <SideBar onLogOut={onLogOut} onProfileChange={onProfileChange} />
       </section>

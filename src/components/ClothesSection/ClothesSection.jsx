@@ -5,12 +5,12 @@ function ClothesSection({ clothingItems, handleAddClick, onCardClick }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__add">
-        <p className="clothes-section__your-items">Your itemss</p>
+        <p className="clothes-section__your-items">Your items</p>
         <button
           onClick={handleAddClick}
           className="clothes-section__add-button"
         >
-          Add Newss
+          Add New
         </button>
       </div>
       <ul className="clothes-section__items">

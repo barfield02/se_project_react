@@ -19,6 +19,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import RegisterModal from "../RegisterModal /RegisterModel.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -49,7 +50,7 @@ function App() {
   };
 
   const onProfileChange = () => {
-    setActiveModal("edit");
+    setActiveModal("change profile data");
   };
 
   // opens up the ItemModal
@@ -100,6 +101,21 @@ function App() {
       })
       .catch((error) => {
         console.error("Error deleting item:", error);
+      });
+  };
+
+  const onEditModalSubmit = ({ name, avatar }) => {
+    return auth
+      .edit(name, avatar)
+      .then((updatedUser) => {
+        // update app state so the UI shows the new profile
+        setCurrentUser(updatedUser);
+        handleCloseClick(); // close the modal
+        return updatedUser;
+      })
+      .catch((err) => {
+        console.error("Profile update failed:", err);
+        throw err;
       });
   };
 
@@ -156,6 +172,31 @@ function App() {
     setCurrentUser(null);
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
   useEffect((data) => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -207,6 +248,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -252,6 +294,13 @@ function App() {
             handleCloseClick={handleCloseClick}
             isOpen={activeModal === "signin"}
             onLoginModalSubmit={onLogin}
+          />
+          <EditProfileModal
+            activeModal={activeModal}
+            handleCloseClick={handleCloseClick}
+            isOpen={activeModal === "change profile data"}
+            onProfileChange={onProfileChange}
+            onEditModalSubmit={onEditModalSubmit}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

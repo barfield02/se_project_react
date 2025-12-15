@@ -9,14 +9,15 @@ function SideBar({ onLogOut, onProfileChange }) {
   return (
     <div className="sidebar">
       <div className="sidebar__user">
-        <span
+        {/* <span
           className="navigation__user navigation__user_location_profile navigation__user_type_none"
           style={{
             backgroundImage: `url(${currentUser.avatar}`,
           }}
         >
           {currentUser && !currentUser.avatar && `${currentUser.name}`[0]}
-        </span>
+        </span> */}
+        <img className="sidebar__avatar" src={currentUser.avatar}></img>
         <p className="sidebar__user-name">{currentUser.name}</p>
       </div>
       <ul className="sidebar__nav">
@@ -25,20 +26,21 @@ function SideBar({ onLogOut, onProfileChange }) {
             type="button"
             className="sidebar__nav-button"
             onClick={onProfileChange}
-            aria-label="change profile data"
-          ></button>
+            //aria-label="change profile data"
+          >
+            Change profile data
+          </button>
         </li>
         <li className="sidebar__nav-item">
           <button
             type="button"
             className="sidebar__logout-button"
             onClick={onLogOut}
-            aria-label="Log out"
+            //aria-label="Log out"
           >
             {" "}
             Log Out
           </button>
-          <span onClick={onLogOut}>Log Out</span>
         </li>
       </ul>
     </div>
