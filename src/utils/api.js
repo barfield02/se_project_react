@@ -13,11 +13,12 @@ function getItems() {
 
 export { getItems };
 
-const addItem = (item) => {
+const addItem = (item, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name: item.name,
@@ -31,9 +32,10 @@ const addItem = (item) => {
 
 export { addItem };
 
-const deleteItem = (id) => {
+const deleteItem = (id, token) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    authorization: `Bearer ${token}`,
   }).then((res) => {
     return checkResponse(res);
   });
@@ -54,4 +56,26 @@ export const getUserInfo = (token) => {
   }).then((res) => {
     return checkResponse(res);
   });
+};
+
+// Add a like to an item
+export const addCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`, // ← JWT required!
+    },
+  }).then(checkResponse);
+};
+
+// Remove a like from an item
+export const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`, // ← JWT required!
+    },
+  }).then(checkResponse);
 };

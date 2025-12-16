@@ -1,17 +1,30 @@
 import "./EditProfileModal.css";
 import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function EditProfileModal({
-  activeModal,
-  handleCloseClick,
   isOpen,
   onLoginModalSubmit,
   onProfileChange,
   onEditModalSubmit,
+  activeModal,
+  handleCloseClick,
 }) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+
+  // Get current user data
+  const currentUser = useContext(CurrentUserContext);
+
+  // Pre-fill form when modal opens
+  useEffect(() => {
+    if (isOpen && currentUser) {
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
+    }
+  }, [isOpen, currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +33,7 @@ export default function EditProfileModal({
         setName("");
         setAvatar("");
       })
-      .catch((error) => {
-        console.error("Error updating profile:", error);
-      });
+      .catch((err) => console.error(err));
   };
   useEffect(() => {
     console.log("EditProfileModal useEffect has run");

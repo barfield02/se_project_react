@@ -2,12 +2,15 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 import { useContext } from "react";
 
-function ItemCard({ item, activeModal, onCardClick, onCardLike }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   // Check if the item was liked by the current user
   // The likes array should be an array of ids
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked =
+    currentUser &&
+    item.likes &&
+    item.likes.some((id) => id === currentUser._id);
 
   const handleImageClick = () => {
     onCardClick(item);

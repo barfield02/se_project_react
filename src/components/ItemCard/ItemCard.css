@@ -23,5 +23,6 @@
 }
 
 .card__like-button_is-active {
-  background: transparent url(../../assets/liked.svg);
+  background: url(../../assets/liked.svg);
+  border: none;
 }

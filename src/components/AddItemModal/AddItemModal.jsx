@@ -42,7 +42,7 @@ export default function AddItemModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="add-name"
           placeholder="Name"
           required
           onChange={(e) => {

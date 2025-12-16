@@ -1,5 +1,4 @@
 import "./SideBar.css";
-import avatar from "../../assets/avatar.png";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -9,14 +8,6 @@ function SideBar({ onLogOut, onProfileChange }) {
   return (
     <div className="sidebar">
       <div className="sidebar__user">
-        {/* <span
-          className="navigation__user navigation__user_location_profile navigation__user_type_none"
-          style={{
-            backgroundImage: `url(${currentUser.avatar}`,
-          }}
-        >
-          {currentUser && !currentUser.avatar && `${currentUser.name}`[0]}
-        </span> */}
         <img className="sidebar__avatar" src={currentUser.avatar}></img>
         <p className="sidebar__user-name">{currentUser.name}</p>
       </div>

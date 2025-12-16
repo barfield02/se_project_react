@@ -5,9 +5,8 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import * as auth from "../../utils/auth.js";
-
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
@@ -20,6 +19,7 @@ import RegisterModal from "../RegisterModal/RegisterModel.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import { addCardLike, removeCardLike } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -64,7 +64,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    return addItem(item).then((newItem) => {
+    const token = localStorage.getItem("jwt"); // ← Get the token
+
+    return addItem(item, token).then((newItem) => {
+      // ← Pass the token
+
       // Add the new item to your clothing items state
       setClothingItems([newItem, ...clothingItems]);
 
@@ -75,7 +79,8 @@ function App() {
   };
 
   const handleDeleteItem = (id) => {
-    deleteItem(id)
+    const token = localStorage.getItem("jwt"); // ← Get the token
+    deleteItem(id, token)
       .then(() => {
         // Remove the item from your local state
         setClothingItems(clothingItems.filter((item) => item._id !== id));
@@ -156,31 +161,31 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
+
     // Check if this card is not currently liked
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+      ? // If not liked, add a like
+        addCardLike(id, token)
+          .then((updatedItem) => {
+            // Update the clothing items state with the new like
+            setClothingItems((prevItems) =>
+              prevItems.map((item) => (item._id === id ? updatedItem : item))
             );
           })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+          .catch((err) => console.error("Failed to like item:", err))
+      : // If already liked, remove the like
+        removeCardLike(id, token)
+          .then((updatedItem) => {
+            // Update the clothing items state without the like
+            setClothingItems((prevItems) =>
+              prevItems.map((item) => (item._id === id ? updatedItem : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.error("Failed to unlike item:", err));
   };
+
   useEffect((data) => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);

@@ -42,12 +42,24 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">Terrence Tegegne</p>
-              <img
-                src={avatar}
-                alt="Terrence Tegegne"
-                className="header__avatar"
-              />
+              <p className="header__username">{currentUser?.name ?? "User"}</p>
+              {/* Avatar image or first-letter placeholder */}
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt={
+                    currentUser.name
+                      ? `${currentUser.name} avatar`
+                      : "User avatar"
+                  }
+                  className="header__avatar"
+                />
+              ) : (
+                <span className="header__avatar-placeholder" aria-hidden="true">
+                  {(currentUser?.name && currentUser.name[0].toUpperCase()) ||
+                    "U"}
+                </span>
+              )}
             </div>
           </Link>
         </>
