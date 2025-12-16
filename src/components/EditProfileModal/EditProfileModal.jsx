@@ -43,7 +43,7 @@ export default function EditProfileModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="edit-name"
           placeholder="Name"
           required
           onChange={(e) => setName(e.target.value)}

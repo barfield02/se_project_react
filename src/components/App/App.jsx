@@ -16,7 +16,7 @@ import { getItems, getUserInfo } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
 import { addItem } from "../../utils/api.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
-import RegisterModal from "../RegisterModal /RegisterModel.jsx";
+import RegisterModal from "../RegisterModal/RegisterModel.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
@@ -59,10 +59,6 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleImageClick = () => {
-    setActiveModal(item);
-  };
-
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -76,20 +72,6 @@ function App() {
       //closeActiveModal();
       handleCloseClick();
     });
-  };
-
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    //update clothing array
-    setClothingItems([
-      {
-        name,
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
-        weather,
-      },
-      ...clothingItems,
-    ]);
-    //close the modal
-    handleCloseClick();
   };
 
   const handleDeleteItem = (id) => {
