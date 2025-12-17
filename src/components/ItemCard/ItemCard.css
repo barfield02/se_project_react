@@ -20,9 +20,9 @@
   width: 18px;
   height: 15px;
   background: transparent url(../../assets/unliked.svg);
+  border: none;
 }
 
 .card__like-button_is-active {
   background: url(../../assets/liked.svg);
-  border: none;
 }

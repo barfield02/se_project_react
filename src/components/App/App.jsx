@@ -160,6 +160,7 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
+    console.log("handleCardLike");
     const token = localStorage.getItem("jwt");
 
     // Check if this card is not currently liked
@@ -252,6 +253,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       onLogOut={onLogOut}
                       onProfileChange={onProfileChange}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
