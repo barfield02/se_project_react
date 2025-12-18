@@ -59,8 +59,8 @@ export const getUserInfo = (token) => {
 };
 
 // Add a like to an item
-export const addCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+export const addCardLike = (cardId, token) => {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -70,8 +70,8 @@ export const addCardLike = (id, token) => {
 };
 
 // Remove a like from an item
-export const removeCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+export const removeCardLike = (cardId, token) => {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

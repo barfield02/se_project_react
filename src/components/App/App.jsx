@@ -70,7 +70,7 @@ function App() {
       // ← Pass the token
 
       // Add the new item to your clothing items state
-      setClothingItems([newItem, ...clothingItems]);
+      setClothingItems([newItem, data, ...clothingItems]);
 
       // Close the modal
       //closeActiveModal();
@@ -160,29 +160,25 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
-    console.log("handleCardLike");
     const token = localStorage.getItem("jwt");
 
-    // Check if this card is not currently liked
-    !isLiked
-      ? // If not liked, add a like
-        addCardLike(id, token)
-          .then((updatedItem) => {
-            // Update the clothing items state with the new like
-            setClothingItems((prevItems) =>
-              prevItems.map((item) => (item._id === id ? updatedItem : item))
-            );
-          })
-          .catch((err) => console.error("Failed to like item:", err))
-      : // If already liked, remove the like
-        removeCardLike(id, token)
-          .then((updatedItem) => {
-            // Update the clothing items state without the like
-            setClothingItems((prevItems) =>
-              prevItems.map((item) => (item._id === id ? updatedItem : item))
-            );
-          })
-          .catch((err) => console.error("Failed to unlike item:", err));
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   useEffect((data) => {

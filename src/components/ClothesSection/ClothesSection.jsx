@@ -5,7 +5,7 @@ function ClothesSection({
   clothingItems,
   handleAddClick,
   onCardClick,
-  onLikeClick,
+  onCardLike,
 }) {
   return (
     <div className="clothes-section">
@@ -19,13 +19,13 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems.map((item) => {
+        {clothingItems.map((item, owner) => {
           return (
             <ItemCard
               key={item._id}
-              item={item}
+              item={item.owner}
               onCardClick={onCardClick}
-              onCardLike={onLikeClick}
+              onCardLike={onCardLike}
             />
           );
         })}

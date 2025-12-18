@@ -8,7 +8,7 @@ function Profile({
   handleAddClick,
   onLogOut,
   onProfileChange,
-  handleCardLike,
+  onCardLike,
 }) {
   return (
     <div className="profile">
@@ -20,7 +20,7 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          onLikeClick={handleCardLike}
+          onCardLike={onCardLike}
         />
       </section>
     </div>
