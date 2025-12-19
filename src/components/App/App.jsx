@@ -70,7 +70,7 @@ function App() {
       // ← Pass the token
 
       // Add the new item to your clothing items state
-      setClothingItems([newItem, data, ...clothingItems]);
+      setClothingItems([newItem, ...clothingItems]);
 
       // Close the modal
       //closeActiveModal();

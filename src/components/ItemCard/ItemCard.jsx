@@ -8,9 +8,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   // Check if the item was liked by the current user
   // The likes array should be an array of ids
   const isLiked =
-    currentUser &&
-    item.likes &&
-    item.likes.some((id) => id === currentUser._id);
+    !!currentUser && item?.likes?.some((id) => id === currentUser._id);
 
   const handleImageClick = () => {
     onCardClick(item);
@@ -22,7 +20,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 
   return (
     <li className="card">
-      <h2 className="card__name">{item.name}</h2>
+      <h2 className="card__name">{item}</h2>
       <img
         onClick={handleImageClick}
         className="card__image"

@@ -66,7 +66,9 @@ export const addCardLike = (cardId, token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`, // ← JWT required!
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .then((json) => json.data);
 };
 
 // Remove a like from an item
@@ -77,5 +79,7 @@ export const removeCardLike = (cardId, token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`, // ← JWT required!
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .then((json) => json.data);
 };

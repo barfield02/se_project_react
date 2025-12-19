@@ -49,7 +49,7 @@ export default function RegisterModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="register-name"
           placeholder="Name"
           required
           onChange={(e) => setName(e.target.value)}
@@ -62,7 +62,7 @@ export default function RegisterModal({
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           placeholder="Email"
           required
           onChange={(e) => setEmail(e.target.value)}
@@ -74,7 +74,7 @@ export default function RegisterModal({
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="register-password"
           placeholder="Password"
           required
           onChange={(e) => setPassword(e.target.value)}
@@ -82,12 +82,12 @@ export default function RegisterModal({
         />
       </label>
 
-      <label htmlFor="Avatar" className="modal__label">
+      <label htmlFor="url" className="modal__label">
         Avatar{" "}
         <input
           type="url"
           className="modal__input"
-          id="url"
+          id="register-url"
           placeholder="Avatar"
           required
           onChange={(e) => setAvatar(e.target.value)}
