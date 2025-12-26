@@ -19,11 +19,11 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems.map((item, owner) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard
               key={item._id}
-              item={item.owner}
+              item={item}
               onCardClick={onCardClick}
               onCardLike={onCardLike}
             />

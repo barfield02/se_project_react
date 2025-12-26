@@ -7,6 +7,7 @@ export default function RegisterModal({
   handleCloseClick,
   isOpen,
   onRegisterModalSubmit,
+  onSwitchToLogin,
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -94,6 +95,16 @@ export default function RegisterModal({
           value={avatar}
         />
       </label>
+      <button
+        type="button"
+        className="modal__switch-button"
+        onClick={() => {
+          // optional: clear local form state here
+          onSwitchToLogin();
+        }}
+      >
+        or Sign in
+      </button>
     </ModalWithForm>
   );
 }

@@ -70,7 +70,6 @@
   margin-top: 32px;
   box-sizing: border-box;
   border: none;
-  background-image: url("../../assets/submit-button.svg");
 }
 .modal__legend {
   margin-bottom: 12px;

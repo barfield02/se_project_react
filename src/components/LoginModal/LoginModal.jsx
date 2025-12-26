@@ -7,6 +7,7 @@ export default function LoginModal({
   handleCloseClick,
   isOpen,
   onLoginModalSubmit,
+  onSwitchToRegister,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,6 +61,16 @@ export default function LoginModal({
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
+        <button
+          type="button"
+          className="modal__switch-button"
+          onClick={() => {
+            // optional: clear local form state here
+            onSwitchToRegister();
+          }}
+        >
+          or Sign up
+        </button>
       </label>
     </ModalWithForm>
   );

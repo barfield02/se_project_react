@@ -35,7 +35,7 @@ export { addItem };
 const deleteItem = (id, token) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    authorization: `Bearer ${token}`,
+    headers: { authorization: `Bearer ${token}` },
   }).then((res) => {
     return checkResponse(res);
   });
@@ -59,8 +59,9 @@ export const getUserInfo = (token) => {
 };
 
 // Add a like to an item
-export const addCardLike = (cardId, token) => {
-  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+export const addCardLike = (_id, token) => {
+  console.log("Item ID being liked:", _id);
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -72,8 +73,8 @@ export const addCardLike = (cardId, token) => {
 };
 
 // Remove a like from an item
-export const removeCardLike = (cardId, token) => {
-  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+export const removeCardLike = (_id, token) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

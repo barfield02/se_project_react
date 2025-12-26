@@ -273,12 +273,14 @@ function App() {
             handleCloseClick={handleCloseClick}
             isOpen={activeModal === "signup"}
             onRegisterModalSubmit={onRegister}
+            onSwitchToLogin={() => setActiveModal("signin")}
           />
           <LoginModal
             activeModal={activeModal}
             handleCloseClick={handleCloseClick}
             isOpen={activeModal === "signin"}
             onLoginModalSubmit={onLogin}
+            onSwitchToRegister={() => setActiveModal("signup")}
           />
           <EditProfileModal
             activeModal={activeModal}
