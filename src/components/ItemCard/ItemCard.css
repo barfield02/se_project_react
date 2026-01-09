@@ -21,6 +21,9 @@
   height: 15px;
   background: transparent url(../../assets/unliked.svg);
   border: none;
+  position: relative;
+  right: 92px;
+  top: 22px;
 }
 
 .card__like-button_is-active {

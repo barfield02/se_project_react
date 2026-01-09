@@ -27,12 +27,14 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         src={item?.imageUrl}
         alt={item?.name}
       />
-      <button
-        className={`card__like-button ${
-          isLiked ? "card__like-button_is-active" : ""
-        }`}
-        onClick={handleLike}
-      />
+      {currentUser && (
+        <button
+          className={`card__like-button ${
+            isLiked ? "card__like-button_is-active" : ""
+          }`}
+          onClick={handleLike}
+        />
+      )}
     </li>
   );
 }

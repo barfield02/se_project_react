@@ -70,7 +70,7 @@ function App() {
       // ← Pass the token
 
       // Add the new item to your clothing items state
-      setClothingItems([newItem, ...clothingItems]);
+      setClothingItems([newItem, data, ...clothingItems]);
 
       // Close the modal
       //closeActiveModal();
@@ -140,7 +140,7 @@ function App() {
       .register(name, avatar, email, password)
       .then((data) => {
         // Registration successful
-        setActiveModal("");
+        handleCloseClick();
         // Automatically sign user in
         return auth.signin(email, password);
       })
@@ -294,4 +294,5 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
+
 export default App;
